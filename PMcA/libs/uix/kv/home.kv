@@ -1,0 +1,47 @@
+<Home_Screen>:
+    name: "home"
+    BoxLayout:
+        orientation:'vertical'
+
+        MDToolbar:
+            title: app.APP_NAME
+            size_hint: 1,.08
+            right_action_items: [ ["account", lambda x:app.screen_manager.change_screen("profile")]] 
+            elevation: 5
+        
+        MDBottomNavigation:
+            id: android_tabs
+            
+            MDBottomNavigationItem:        
+                name: "chat_scr"
+                text: f"CHATS"
+                icon: "chat"
+                ScrollView:
+                    MDList:
+                        id: chat_tab
+        
+            MDBottomNavigationItem:
+                name: "search_scr"
+                text: f"SEARCH"
+                icon: "account-search"
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    spacing: dp(5)
+                    padding: dp(10)
+
+                    MDBoxLayout:
+                        adaptive_height: True
+
+                        MDTextField:
+                            id: search_field
+                            hint_text: 'Search'
+                        
+                        MDIconButton:
+                            icon: 'magnify'
+                            on_release: root.search_account(search_field.text)
+
+                    ScrollView:
+                        MDList:
+                            id: search_items
+              
